@@ -7,12 +7,12 @@ var fs = require("fs")
 module.exports = function(app) {
 
   app.get("/api/notes", function(req, res) {
-      fs.readFile("../db/db.json", function(err,data){
-        console.log("Get route",err,data)
-        noteData = JSON.parse(data)
-        res.json(noteData);
-      });
-    // res.json(data)
+    //   fs.readFile("../db/db.json", function(err,data){
+    //     console.log("Get route",err,data)
+    //     noteData = JSON.parse(data)
+    //     res.json(noteData);
+    //   });
+    res.json(data)
    
   });
 
@@ -28,8 +28,8 @@ module.exports = function(app) {
         text:req.body.text
     }
 
-    noteData.push("notes", records);
-    // data.push(records)
+    noteData.push(records.body);
+    data.push(records)
     fs.writeFile("../db/db.json", noteData, function(err, data) {
         if(err){
             throw err
@@ -42,6 +42,8 @@ module.exports = function(app) {
       res.json(noteData);
     
   });
+
+
 
  
 
