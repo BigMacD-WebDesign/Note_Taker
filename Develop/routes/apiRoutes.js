@@ -12,7 +12,7 @@ module.exports = function(app) {
     //     noteData = JSON.parse(data)
     //     res.json(noteData);
     //   });
-    res.json(data)
+    // res.json(data)
    
   });
 
@@ -28,18 +28,18 @@ module.exports = function(app) {
         text:req.body.text
     }
 
-    noteData.push(records.body);
-    data.push(records)
-    fs.writeFile("../db/db.json", noteData, function(err, data) {
+    // noteData.push(records.body);
+      // data.push(records)
+    fs.writeFile("../db/db.json", records, "utf-8", function(err, data) {
         if(err){
             throw err
         }
         console.log(data);
-        res.json(noteData);
+        res.json("Succesfully written");
     });
-        console.log(records);
-      noteData.push(records);
-      res.json(noteData);
+        
+      // noteData.push(records);
+      // res.json(noteData);
     
   });
 
