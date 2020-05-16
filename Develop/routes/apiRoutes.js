@@ -2,13 +2,19 @@ var noteData = require("../db/db.json");
 const { v4: uuidv4 } = require('uuid');
 var fs = require("fs")
 var records = [];
+var path = require("path");
+
+// path.join(__dirname, "./Develop/db/db.json");
 
 module.exports = function (app) {
 
   app.get("/api/notes", function (req, res) {
     fs.readFile("./db/db.json", "utf-8", function (err, data) {
 
-      res.json(JSON.parse(data));
+      // let parsedData = JSON.parse(data);
+      res.json(data);
+
+      console.log(data);
 
     });
 
@@ -29,7 +35,7 @@ module.exports = function (app) {
 
     records.push(record);
 
-    fs.writeFile("./db/db.json", JSON.stringify(records), "utf-8", function (err, data) {
+    fs.writeFile("./Develop/db/db.json", JSON.stringify(records), function (err, data) {
       if (err) {
         throw err
       }
@@ -50,7 +56,7 @@ module.exports = function (app) {
     console.log(req.params.id);
     var noteId = req.params.id;
 
-    fs.readFile("./db/db.json", "utf-8", function (err, data) {
+    fs.readFile("./Develop/db/db.json", "utf-8", function (err, data) {
 
       let parsedData = JSON.parse(data);
 
@@ -65,10 +71,11 @@ module.exports = function (app) {
         console.log(parsedData[i]);
       }
 
-      fs.writeFile("./db/db.json", JSON.stringify(parsedData), "utf-8", function (err, data) {
+      fs.writeFile("./Develop/db/db.json", JSON.stringify(parsedData), function (err, data) {
         if (err) {
           throw err
         }
+
         console.log(parsedData);
         res.send("Succesfully written");
       });
