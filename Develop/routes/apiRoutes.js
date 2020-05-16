@@ -4,15 +4,20 @@ var fs = require("fs")
 var records = [];
 var path = require("path");
 
-// path.join(__dirname, "./Develop/db/db.json");
 
 module.exports = function (app) {
 
   app.get("/api/notes", function (req, res) {
-    fs.readFile("./db/db.json", "utf-8", function (err, data) {
+    fs.readFile("./Develop/db/db.json", "utf-8", function (err, data) {
 
-      // let parsedData = JSON.parse(data);
-      res.json(data);
+      // var record = {
+      //   id: uuidv4(),
+      //   title: req.body.title,
+      //   text: req.body.text
+      // }
+      // records.push(record);
+
+      res.json(JSON.parse(data));
 
       console.log(data);
 
@@ -40,7 +45,8 @@ module.exports = function (app) {
         throw err
       }
       
-      res.send("Succesfully written");
+      
+      res.send(record);
     });
 
   });
