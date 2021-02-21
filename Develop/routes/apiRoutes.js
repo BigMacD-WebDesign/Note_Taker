@@ -10,12 +10,6 @@ module.exports = function (app) {
   app.get("/api/notes", function (req, res) {
     fs.readFile("./Develop/db/db.json", "utf-8", function (err, data) {
 
-      // var record = {
-      //   id: uuidv4(),
-      //   title: req.body.title,
-      //   text: req.body.text
-      // }
-      // records.push(record);
 
       res.json(JSON.parse(data));
 

@@ -1,8 +1,6 @@
 
 var path = require("path");
 
-// path.join(__dirname, "./Develop/db/db.json");
-
 
 module.exports = function(app) {
   
